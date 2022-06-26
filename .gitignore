@@ -58,3 +58,10 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+DesertRoyal/[Ll]ibrary/
+DesertRoyal/[Tt]emp/
+DesertRoyal/[Oo]bj/
+DesertRoyal/[Bb]uild/
+DesertRoyal/[Bb]uilds/
+DesertRoyal/[Ll]ogs/
+DesertRoyal/[Mm]emoryCaptures/
