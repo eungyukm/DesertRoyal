@@ -1,0 +1,48 @@
+.screen {
+    flex-grow: 1;
+    flex-shrink: 1;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    -unity-font: url('project://database/Assets/Art/UI/Fonts/LilitaOne-Regular.ttf?fileID=12800000&guid=631d6eefd87fb42edb67943e6e63f758&type=3#LilitaOne-Regular');
+    font-size: 20px;
+    width: 1080px;
+    height: 1920px;
+}
+
+.screnn-tinted {
+    -unity-background-image-tint-color: rgba(108, 108, 108, 255);
+}
+
+.header {
+    margin-top: 15px;
+    margin-bottom: 18px;
+    font-size: 36px;
+}
+
+.button {
+    justify-content: center;
+    width: 266px;
+    height: 87px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 32px;
+    background-image: url('project://database/Assets/Art/UI/Elements/ui_btn_menus.png?fileID=2800000&guid=d441b8203a8a90c46b69a395a4bee653&type=3#ui_btn_menus');
+    -unity-slice-left: 80;
+    -unity-slice-top: 40;
+    -unity-slice-right: 80;
+    -unity-slice-bottom: 40;
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    color: rgba(255, 255, 255, 255);
+}
+
+.button:hover {
+    color: rgba(180, 178, 178, 255);
+}

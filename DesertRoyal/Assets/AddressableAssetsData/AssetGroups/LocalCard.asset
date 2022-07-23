@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: LocalCard
+  m_EditorClassIdentifier: 
+  m_GroupName: LocalCard
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 1993264e38bd045aba60a360f2d1d1f3
+  m_SerializeEntries:
+  - m_GUID: f74470ad4c6c046e0bc4b0bf8394795d
+    m_Address: Assets/ScriptableObjects/02_Cards
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Base
+  - m_GUID: a2d9700a896344fa0882ac60fa8cc884
+    m_Address: Assets/Prefabs/Cube.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - test
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 91818bb0d0fb34736a39ceec1e544ae6, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: bfa32099ae633457ca9a72812cf00ac8, type: 2}
+    - {fileID: 11400000, guid: e67e94bef69c046fbbda03739ca0cce7, type: 2}

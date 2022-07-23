@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="TitleScreen" src="project://database/Assets/Art/UI/TitleScreen.uxml?fileID=9197481963319205126&amp;guid=814bc3eec71054858aaef2d5ff0f85b5&amp;type=3#TitleScreen" />
+    <ui:Template name="About" src="project://database/Assets/Art/UI/About.uxml?fileID=9197481963319205126&amp;guid=f5f5fdc6ac72240d8bdfe54c0f3754bb&amp;type=3#About" />
+    <Style src="project://database/Assets/Art/UI/TitleScreenManager.uss?fileID=7433441132597879392&amp;guid=3ad43fcc5e30643249db1d1200a7a2fb&amp;type=3#TitleScreenManager" />
+    <TitleScreenManager class="screen">
+        <ui:Instance template="TitleScreen" name="TitleScreen" style="display: flex;" />
+        <ui:Instance template="About" name="About" style="display: none;" />
+    </TitleScreenManager>
+</ui:UXML>

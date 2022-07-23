@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
@@ -10,6 +11,10 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     public GameObject placeHolder;
 
     public GameObject card;
+    
+    [HideInInspector] public int cardId;
+    [HideInInspector] public CardData cardData;
+    public Image portraitImage; //Inspector-set reference
     
     // Start is called before the first frame update
     void Start()
@@ -54,5 +59,11 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     public void OnEndDrag(PointerEventData eventData)
     {
         
+    }
+    
+    public void InitialiseWithData(CardData cData)
+    {
+        cardData = cData;
+        portraitImage.sprite = cardData.cardImage;
     }
 }
