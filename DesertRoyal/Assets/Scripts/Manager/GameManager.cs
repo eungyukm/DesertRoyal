@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     private CPUOpponent CPUOpponent;
     // private InputManager inputManager;
     // private AudioManager audioManager;
-    // private UIManager UIManager;
+    private UIManager UIManager;
     // private CinematicsManager cinematicsManager;
     
     private List<ThinkingPlaceable> playerUnits, opponentUnits;
@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
         // inputManager = GetComponent<InputManager>();
         //audioManager = GetComponentInChildren<AudioManager>();
         // cinematicsManager = GetComponentInChildren<CinematicsManager>();
-        // UIManager = GetComponent<UIManager>();
+        UIManager = GetComponent<UIManager>();
 
         if (autoStart)
         {
@@ -149,7 +149,7 @@ public class GameManager : MonoBehaviour
                 if(currProjectile.target.state != ThinkingPlaceable.States.Dead) //target might be dead already as this projectile is flying
                 {
                     float newHP = currProjectile.target.SufferDamage(currProjectile.damage);
-                    // currProjectile.target.healthBar.SetHealth(newHP);
+                    currProjectile.target.healthBar.SetHealth(newHP);
                 }
                 Destroy(currProjectile.gameObject);
                 allProjectiles.RemoveAt(prjN);
@@ -228,7 +228,7 @@ public class GameManager : MonoBehaviour
                 uScript.OnDealDamage += OnPlaceableDealtDamage;
                 uScript.OnProjectileFired += OnProjectileFired;
                 AddPlaceableToList(uScript); //add the Unit to the appropriate list
-                // UIManager.AddHealthUI(uScript);
+                UIManager.AddHealthUI(uScript);
                 break;
 
                     case Placeable.PlaceableType.Building:
@@ -238,7 +238,7 @@ public class GameManager : MonoBehaviour
 						bScript.OnDealDamage += OnPlaceableDealtDamage;
 						bScript.OnProjectileFired += OnProjectileFired;
                         AddPlaceableToList(bScript); //add the Building to the appropriate list
-                        // UIManager.AddHealthUI(bScript);
+                        UIManager.AddHealthUI(bScript);
 
                         //special case for castles
                         if(pDataRef.pType == Placeable.PlaceableType.Castle)
@@ -270,7 +270,7 @@ public class GameManager : MonoBehaviour
             if(p.target.state != ThinkingPlaceable.States.Dead)
             {
                 float newHealth = p.target.SufferDamage(p.damage);
-                // p.target.healthBar.SetHealth(newHealth);
+                p.target.healthBar.SetHealth(newHealth);
             }
         }
         
@@ -289,7 +289,7 @@ public class GameManager : MonoBehaviour
                 {
                     thkPl.Stop();
                     thkPl.transform.LookAt(c.transform.position);
-                    // UIManager.RemoveHealthUI(thkPl);
+                    UIManager.RemoveHealthUI(thkPl);
                 }
             }
 
@@ -308,7 +308,7 @@ public class GameManager : MonoBehaviour
                     // RemovePlaceableFromList(u);
                     u.OnDealDamage -= OnPlaceableDealtDamage;
                     u.OnProjectileFired -= OnProjectileFired;
-                    // UIManager.RemoveHealthUI(u);
+                    UIManager.RemoveHealthUI(u);
                     StartCoroutine(Dispose(u));
                     break;
 
@@ -316,7 +316,7 @@ public class GameManager : MonoBehaviour
                 case Placeable.PlaceableType.Castle:
                     Building b = (Building)p;
                     RemovePlaceableFromList(b);
-                    // UIManager.RemoveHealthUI(b);
+                    UIManager.RemoveHealthUI(b);
                     b.OnDealDamage -= OnPlaceableDealtDamage;
                     b.OnProjectileFired -= OnProjectileFired;
                     StartCoroutine(RebuildNavmesh()); //need to fix for normal buildings

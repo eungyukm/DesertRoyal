@@ -217,6 +217,7 @@ MonoBehaviour:
   timeToActNext: 0
   projectilePrefab: {fileID: 0}
   projectileSpawnPoint: {fileID: 0}
+  healthBar: {fileID: 0}
 --- !u!1 &507569706
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,6 +280,7 @@ MonoBehaviour:
   timeToActNext: 0
   projectilePrefab: {fileID: 0}
   projectileSpawnPoint: {fileID: 0}
+  healthBar: {fileID: 0}
 --- !u!65 &507569709
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -633,6 +635,7 @@ GameObject:
   - component: {fileID: 702958744}
   - component: {fileID: 702958743}
   - component: {fileID: 702958745}
+  - component: {fileID: 702958746}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -709,6 +712,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aiDeck: {fileID: 11400000, guid: 5f51fa832dec74935a36091e64d0c22d, type: 2}
   opponentLoopTime: 5
+--- !u!114 &702958746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 702958740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8fe0ead78c2f48498bf9be38f2ec338, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBarPrefab: {fileID: 1430331340857058105, guid: d616f2dcaf119439f81f469d4662b50b, type: 3}
+  gameOverUI: {fileID: 0}
 --- !u!1 &759041139
 GameObject:
   m_ObjectHideFlags: 0
@@ -1251,6 +1268,7 @@ MonoBehaviour:
   timeToActNext: 0
   projectilePrefab: {fileID: 0}
   projectileSpawnPoint: {fileID: 0}
+  healthBar: {fileID: 0}
 --- !u!1 &1606392203
 GameObject:
   m_ObjectHideFlags: 0

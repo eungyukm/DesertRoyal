@@ -44,7 +44,9 @@ public class ThinkingPlaceable : Placeable
     public GameObject projectilePrefab;
     public Transform projectileSpawnPoint;
     
-    // private Projectile projectile;
+    [HideInInspector] public HealthBar healthBar;
+    
+    private Projectile projectile;
     protected AudioSource audioSource;
 
 
