@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public bool autoStart = false;
     
     [Header("Public References")]
-    // public NavMeshSurface navMesh;
+    public NavMeshSurface navMesh;
     public GameObject playersCastle, opponentCastle;
     public GameObject introTimeline;
     public PlaceableData castlePData;
@@ -243,16 +243,16 @@ public class GameManager : MonoBehaviour
                         //special case for castles
                         if(pDataRef.pType == Placeable.PlaceableType.Castle)
                         {
-                            // bScript.OnDie += OnCastleDead;
+                            bScript.OnDie += OnCastleDead;
                         }
                         
-                        // navMesh.BuildNavMesh(); //rebake the Navmesh
+                        navMesh.BuildNavMesh(); //rebake the Navmesh
                         break;
 
                     case Placeable.PlaceableType.Obstacle:
                         // Obstacle oScript = go.GetComponent<Obstacle>();
                         // oScript.Activate(pDataRef);
-                        // navMesh.BuildNavMesh(); //rebake the Navmesh
+                        navMesh.BuildNavMesh(); //rebake the Navmesh
                         break;
 
                     // case Placeable.PlaceableType.Spell:
@@ -326,9 +326,9 @@ public class GameManager : MonoBehaviour
                         StartCoroutine(Dispose(b));
                     break;
 
-                // case Placeable.PlaceableType.Obstacle:
-                    // StartCoroutine(RebuildNavmesh());
-                    // break;
+                case Placeable.PlaceableType.Obstacle:
+                    StartCoroutine(RebuildNavmesh());
+                    break;
 
                 // case Placeable.PlaceableType.Spell:
                     //TODO: can spells die?
@@ -347,7 +347,7 @@ public class GameManager : MonoBehaviour
         {
             yield return new WaitForEndOfFrame();
 
-            // navMesh.BuildNavMesh();
+            navMesh.BuildNavMesh();
             //FIX: dragged obstacles are included in the navmesh when it's baked
         }
         
