@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Mage
   m_EditorClassIdentifier: 
   cardImage: {fileID: 21300000, guid: 3415124df9670482e8a472b92854a834, type: 3}
+  placeablesData:
+  - {fileID: 0}
   relativeOffsets: []

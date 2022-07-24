@@ -6,38 +6,45 @@ public class Unit : ThinkingPlaceable
 {
     private float speed;
 
-    private Animator _animator;
-    private NavMeshAgent _navMeshAgent;
-
-    public GameObject target;
-
-    public bool hasTarget = false;
+    private Animator animator;
+    private NavMeshAgent navMeshAgent;
 
     private void Awake()
     {
         pType = Placeable.PlaceableType.Unit;
-        _navMeshAgent = GetComponent<NavMeshAgent>();
-        
-        target = GameObject.Find("Target");
-        SetTarget(target.GetComponent<ThinkingPlaceable>());
-    }
 
-    public void Activate(Faction pFaction)
+        animator = GetComponent<Animator>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        audioSource = GetComponent<AudioSource>();
+    }
+    
+    //이 유닛이 플레이 필드에서 플레이될 때 GameManager에 의해 호출됩니다.
+    public void Activate(Faction pFaction, PlaceableData pData)
     {
         faction = pFaction;
+        hitPoints = pData.hitPoints;
+        targetType = pData.targetType;
+        attackRange = pData.attackRange;
+        attackRatio = pData.attackRatio;
+        speed = pData.speed;
+        damage = pData.damagePerAttack;
+        attackAudioClip = pData.attackClip;
+        // dieAudioClip = pData.dieClip;
+        //TODO: add more as necessary
+            
+        navMeshAgent.speed = speed;
+        animator.SetFloat("MoveSpeed", speed); //실행 애니메이션 클립의 속도에 대한 승수 역할을 합니다.
 
-        Seek();
-        // state = States.Idle;
+        state = States.Idle;
+        navMeshAgent.enabled = true;
     }
 
     public override void SetTarget(ThinkingPlaceable t)
     {
         base.SetTarget(t);
-        
-        Debug.Log("하위 메서드!!");
-        hasTarget = true;
     }
-
+    
+    //유닛이 목표물을 향해 이동합니다.
     public override void Seek()
     {
         if (target == null)
@@ -47,38 +54,42 @@ public class Unit : ThinkingPlaceable
         
         base.Seek();
         
-        _navMeshAgent.SetDestination(target.transform.position);
+        navMeshAgent.SetDestination(target.transform.position);
+        navMeshAgent.isStopped = false;
+        animator.SetBool("IsMoving", true);
     }
     
     // 유닛이 목표에 도달했습니다.
     public override void StartAttack()
     {
         base.StartAttack();
-        
-        
-    }
 
-    private void Update()
-    {
-        if (!hasTarget)
-        {
-            return;
-        }
-        _navMeshAgent.SetDestination(target.transform.position);
+        navMeshAgent.isStopped = true;
+        animator.SetBool("IsMoving", false);
     }
-
+    
+    //공격 애니메이션을 시작하고 유닛의 공격 비율에 따라 반복됩니다.
     public override void DealBlow()
     {
         base.DealBlow();
-    }
 
+        animator.SetTrigger("Attack");
+        transform.forward = (target.transform.position - transform.position).normalized; //turn towards the target
+    }
+    
     public override void Stop()
     {
         base.Stop();
+
+        navMeshAgent.isStopped = true;
+        animator.SetBool("IsMoving", false);
     }
 
     protected override void Die()
     {
         base.Die();
+        
+        navMeshAgent.enabled = false;
+        animator.SetTrigger("IsDead");
     }
 }

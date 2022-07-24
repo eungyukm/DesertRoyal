@@ -22,7 +22,7 @@ public class Placeable : MonoBehaviour
     public enum PlaceableTarget
     {
         None,
-        OnlyBuilding,
+        OnlyBuildings,
         Both
     }
     

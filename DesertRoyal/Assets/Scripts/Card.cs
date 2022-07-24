@@ -1,69 +1,51 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
+
+public class Card : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler
 {
-    public Camera mainCamera;
-    public GameObject Unit;
-    public LayerMask LayerMask;
+    public UnityAction<int, Vector2> OnDragAction;
+    public UnityAction<int> OnTapDownAction, OnTapReleaseAction;
 
-    public GameObject placeHolder;
-
-    public GameObject card;
-    
     [HideInInspector] public int cardId;
     [HideInInspector] public CardData cardData;
+    
     public Image portraitImage; //Inspector-set reference
+    private CanvasGroup canvasGroup;
     
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        placeHolder = Instantiate(Unit, Vector3.zero, Quaternion.identity);
-        placeHolder.SetActive(false);
+        canvasGroup = GetComponent<CanvasGroup>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void OnDrag(PointerEventData eventData)
-    {
-        Debug.Log("Drag!!");
-        transform.position = eventData.position;
-        
-        RaycastHit hit;
-        Ray ray = mainCamera.ScreenPointToRay(eventData.position);
-        if(Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask))
-        {
-            Vector3 hitPos = hit.point;
-            placeHolder.SetActive(true);
-            card.SetActive(false);
-            placeHolder.transform.position = hitPos;
-        }
-        else
-        {
-            card.SetActive(true);
-            placeHolder.SetActive(false);
-        }
-        
-    }
-
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        
-    }
-    
     public void InitialiseWithData(CardData cData)
     {
         cardData = cData;
         portraitImage.sprite = cardData.cardImage;
+    }
+
+    public void OnPointerDown(PointerEventData pointerEvent)
+    {
+        if(OnTapDownAction != null)
+            OnTapDownAction(cardId);
+    }
+
+    public void OnDrag(PointerEventData pointerEvent)
+    {
+        if(OnDragAction != null)
+            OnDragAction(cardId, pointerEvent.delta);
+    }
+
+    public void OnPointerUp(PointerEventData pointerEvent)
+    {
+        if(OnTapReleaseAction != null)
+            OnTapReleaseAction(cardId);
+    }
+
+    public void ChangeActiveState(bool isActive)
+    {
+        canvasGroup.alpha = (isActive) ? .05f : 1f;
     }
 }

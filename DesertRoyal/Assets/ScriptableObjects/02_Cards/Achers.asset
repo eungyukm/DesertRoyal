@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: Achers
   m_EditorClassIdentifier: 
   cardImage: {fileID: 21300000, guid: 2bf4029e327b74068936cf64d3fdbc9d, type: 3}
-  relativeOffsets: []
+  placeablesData:
+  - {fileID: 11400000, guid: a3af2ed6c372e4c5ba8bbd1aaf91cb7e, type: 2}
+  relativeOffsets:
+  - {x: 0, y: 0, z: 0}

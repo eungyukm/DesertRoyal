@@ -29,14 +29,26 @@ public class ThinkingPlaceable : Placeable
     }
 
     public ThinkingPlaceable target;
+    // [HideInInspector] public HealthBar healthBar;
 
-    public float hitPoints;
-    public float attackRange;
-    public float lastBlowTime = -1000f;
-    public float damage;
+    [HideInInspector] public float hitPoints;
+    [HideInInspector] public float attackRange;
+    [HideInInspector] public float attackRatio;
+    [HideInInspector] public float lastBlowTime = -1000f;
+    [HideInInspector] public float damage;
+    [HideInInspector] public AudioClip attackAudioClip;
+    
+    [HideInInspector] public float timeToActNext = 0f;
+    
+    [Header("Projectile for Ranged")]
+    public GameObject projectilePrefab;
+    public Transform projectileSpawnPoint;
+    
+    // private Projectile projectile;
+    protected AudioSource audioSource;
 
 
-    public UnityAction<ThinkingPlaceable> OnDealDamage;
+    public UnityAction<ThinkingPlaceable> OnDealDamage, OnProjectileFired;
 
     public virtual void SetTarget(ThinkingPlaceable t)
     {
@@ -79,9 +91,11 @@ public class ThinkingPlaceable : Placeable
         state = States.Idle;
 
         target.OnDie -= TargetsDead;
+        
+        timeToActNext = lastBlowTime + attackRatio;
     }
 
-    public bool IsTargetInRnage()
+    public bool IsTargetInRange()
     {
         return (transform.position - target.transform.position).sqrMagnitude <= attackRange * attackRange;
     }
@@ -110,5 +124,14 @@ public class ThinkingPlaceable : Placeable
         {
             OnDie(this);
         }
+    }
+    
+    public void FireProjectile()
+    {
+        //ranged units play audio when the projectile is fired
+        //audioSource.PlayOneShot(attackAudioClip, 1f);
+
+        if(OnProjectileFired != null)
+            OnProjectileFired(this);
     }
 }

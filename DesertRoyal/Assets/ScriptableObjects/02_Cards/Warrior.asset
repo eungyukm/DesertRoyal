@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: Warrior
   m_EditorClassIdentifier: 
   cardImage: {fileID: 21300000, guid: cfdb5693d94394e0c966e8791e82b981, type: 3}
-  relativeOffsets: []
+  placeablesData:
+  - {fileID: 11400000, guid: b4ed386a4aa3443f484f89f67a7c692e, type: 2}
+  relativeOffsets:
+  - {x: 0, y: 0, z: 0}
